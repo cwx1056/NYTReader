@@ -9,4 +9,5 @@ target 'NYTReader' do
 
   pod 'Alamofire', '~> 4.5'
   pod 'SwiftyJSON'
+  pod 'PromiseKit', '~> 4.4'
 end
