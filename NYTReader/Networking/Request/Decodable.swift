@@ -7,3 +7,9 @@
 //
 
 import Foundation
+import SwiftyJSON
+
+public protocol Decodable {
+    static func parse(_ json: JSON, _ decoder: Decoder?) -> Self?
+}
+

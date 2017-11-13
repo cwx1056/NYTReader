@@ -7,3 +7,16 @@
 //
 
 import Foundation
+import Alamofire
+import SwiftyJSON
+
+public protocol Request {
+    var path: String { get }
+    
+    var method: HTTPMethod { get }
+    var header: HTTPHeaders? { get }
+    var parameter: [String: Any] { get }
+    var encoding: ParameterEncoding { get }
+    var decoder: Decoder? { get }
+    associatedtype Response: Decodable
+}
