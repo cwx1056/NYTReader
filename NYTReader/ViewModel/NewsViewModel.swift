@@ -33,7 +33,7 @@ class NewsViewModel {
     func fetchNews(_ refresh: Bool, _ completion: @escaping (NewsViewModel, Error?) -> Void ) {
         let nextOffset = refresh ? 0 : offset + 1
         
-        NYTNewsManager.shared.fetchAllNews(offset: offset) { (data, error) in
+        NYTNewsManager.shared.fetchAllNews(offset: nextOffset) { (data, error) in
             guard error == nil else {
                 completion(self, error)
                 return
