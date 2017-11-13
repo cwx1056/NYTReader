@@ -22,4 +22,12 @@ extension String {
         
         return ceil(boundingBox.width)
     }
+    
+    func toDate(_ dateFormat: String) -> Date? {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = dateFormat
+        
+        let date: Date? = dateFormatter.date(from: self)
+        return date
+    }
 }

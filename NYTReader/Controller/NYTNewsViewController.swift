@@ -40,6 +40,13 @@ class NYTNewsViewController: UIViewController {
         newRefreshControl.addTarget(self, action: #selector(refreshNews), for: .valueChanged)
         return newRefreshControl
     }()
+    
+    lazy fileprivate var titleLabel: UILabel = {
+        let newLabel = UILabel()
+        newLabel.font = UIFont(name: "Olde English", size: 30)
+        newLabel.text = "The New York Times"
+        return newLabel
+    }()
 
     // MARK: -
     // MARK: Life cycle
@@ -48,6 +55,7 @@ class NYTNewsViewController: UIViewController {
         super.viewDidLoad()
         
         newsTableView.addSubview(refreshControl)
+        navigationItem.titleView = titleLabel
         refreshNews()
     }
     

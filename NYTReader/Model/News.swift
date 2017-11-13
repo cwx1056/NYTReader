@@ -15,6 +15,7 @@ struct News {
     var url: String
     var byline: String
     var photo: NewsPhoto?
+    var date: Date
 }
 
 extension News: Decodable {
@@ -28,9 +29,12 @@ struct NewsJSONDecoder: Decoder {
         guard let title = json["title"].string else { return nil }
         guard let url = json["url"].string else { return nil }
         guard let byline = json["byline"].string else { return nil }
+        guard let dateStr = json["published_date"].string else { return nil }
         
         let abstract = json["abstract"].string
         let photo = NewsPhoto.parse(json["multimedia"], NewsPhotoJSONDecoder())
-        return News(title: title, abstract: abstract, url: url, byline: byline, photo: photo)
+        
+        let date = dateStr.toDate("yyyy-MM-dd'T'HH:mm:ss-mm:ss")!
+        return News(title: title, abstract: abstract, url: url, byline: byline, photo: photo, date: date)
     }
 }

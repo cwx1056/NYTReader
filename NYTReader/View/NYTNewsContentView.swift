@@ -39,6 +39,8 @@ class NYTNewsContentView: UIView {
         let newLabel = UILabel()
         newLabel.numberOfLines = 0
         newLabel.lineBreakMode = .byWordWrapping
+        newLabel.font = UIFont(name: "Avenir-Light", size: 12)
+        newLabel.textColor = UIColor.lightGray.withAlphaComponent(0.75)
         return newLabel
     }()
     
@@ -62,6 +64,7 @@ class NYTNewsContentView: UIView {
         authorLabel.text = news.byline
         titleLabel.text = news.title
         contentLabel.text = news.abstract
+        dateLabel.text = news.date.toNewsDateString()
         
         layoutInnerViews()
     }
@@ -99,12 +102,19 @@ class NYTNewsContentView: UIView {
         contentLabel.snp.remakeConstraints { make in
             make.leading.trailing.equalTo(self.titleLabel)
             make.top.equalTo(self.titleLabel.snp.bottom).offset(8)
+
+            if let text = self.contentLabel.text, !text.isEmpty {
+                let height = text.height(withConstrainedWidth: UIScreen.main.bounds.width - 30, font: self.contentLabel.font)
+                make.height.equalTo(height)
+            } else {
+                make.height.equalTo(0)
+            }
+        }
+        
+        dateLabel.snp.remakeConstraints { make in
+            make.leading.equalTo(self.contentLabel)
+            make.top.equalTo(self.contentLabel.snp.bottom).offset(10)
             make.bottom.equalTo(self).offset(-15)
-//
-//            if let text = self.contentLabel.text, !text.isEmpty {
-//                let height = text.height(withConstrainedWidth: UIScreen.main.bounds.width - 30, font: self.contentLabel.font)
-//                make.height.equalTo(height)
-//            }
         }
     }
 }
