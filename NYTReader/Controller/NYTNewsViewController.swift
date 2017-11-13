@@ -8,6 +8,7 @@
 
 import UIKit
 import SafariServices
+import UIScrollView_InfiniteScroll
 
 class NYTNewsViewController: UIViewController {
     
@@ -21,6 +22,10 @@ class NYTNewsViewController: UIViewController {
             newsTableView.delegate = self
             newsTableView.separatorInset = UIEdgeInsets(top: 0, left: 25, bottom: 0, right: 25)
             newsTableView.register(NYTNewsTableViewCell.self, forCellReuseIdentifier: Identifier.newsTableViewCell)
+            newsTableView.addInfiniteScroll { [weak self] tableView in
+                guard let strongSelf = self else { return }
+                strongSelf.fetchNews(false)
+            }
         }
     }
     
@@ -69,6 +74,7 @@ class NYTNewsViewController: UIViewController {
             self.offset += 1
             self.newsTableView.reloadData()
             self.refreshControl.endRefreshing()
+            self.newsTableView.finishInfiniteScroll()
         }
     }
 }

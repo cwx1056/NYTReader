@@ -12,4 +12,5 @@ target 'NYTReader' do
   pod 'PromiseKit', '~> 4.4'
   pod 'SnapKit', '~> 4.0.0'
   pod 'Kingfisher', '~> 4.0'
+  pod 'UIScrollView-InfiniteScroll', '~> 1.0.0'
 end
