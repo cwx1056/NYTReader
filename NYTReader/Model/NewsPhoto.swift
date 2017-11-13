@@ -16,6 +16,7 @@ enum NewsPhotoFormat {
 struct NewsPhoto {
     var height: Float
     var width: Float
+    var url: String
     var caption: String?
     var copyright: String?
 }
@@ -39,9 +40,11 @@ struct NewsPhotoJSONDecoder: Decoder {
         guard let photo = photoJSON else { return nil }
         guard let height = photo["height"].float else { return nil }
         guard let width = photo["width"].float else { return nil }
-        guard let caption = photo["caption"].string else { return nil }
-        guard let copyright = photo["copyright"].string else { return nil }
+        guard let url = photo["url"].string else { return nil }
         
-        return NewsPhoto(height: height, width: width, caption: caption, copyright: copyright)
+        let caption = photo["caption"].string
+        let copyright = photo["copyright"].string
+        
+        return NewsPhoto(height: height, width: width, url: url, caption: caption, copyright: copyright)
     }
 }

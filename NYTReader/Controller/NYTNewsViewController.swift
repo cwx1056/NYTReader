@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SafariServices
 
 class NYTNewsViewController: UIViewController {
     
@@ -18,7 +19,7 @@ class NYTNewsViewController: UIViewController {
         didSet {
             newsTableView.dataSource = self
             newsTableView.delegate = self
-            
+            newsTableView.separatorInset = UIEdgeInsets(top: 0, left: 25, bottom: 0, right: 25)
             newsTableView.register(NYTNewsTableViewCell.self, forCellReuseIdentifier: Identifier.newsTableViewCell)
         }
     }
@@ -28,6 +29,12 @@ class NYTNewsViewController: UIViewController {
     
     fileprivate var news = [News]()
     fileprivate var offset = 0
+    
+    lazy fileprivate var refreshControl: UIRefreshControl = {
+        let newRefreshControl = UIRefreshControl()
+        newRefreshControl.addTarget(self, action: #selector(refreshNews), for: .valueChanged)
+        return newRefreshControl
+    }()
 
     // MARK: -
     // MARK: Life cycle
@@ -35,6 +42,14 @@ class NYTNewsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        newsTableView.addSubview(refreshControl)
+        refreshNews()
+    }
+    
+    // MARK: -
+    // MARK: Events response
+    
+    @objc fileprivate func refreshNews() {
         fetchNews(true)
     }
 
@@ -53,6 +68,7 @@ class NYTNewsViewController: UIViewController {
             self.news.append(contentsOf: newData)
             self.offset += 1
             self.newsTableView.reloadData()
+            self.refreshControl.endRefreshing()
         }
     }
 }
@@ -62,9 +78,24 @@ extension NYTNewsViewController: UITableViewDataSource, UITableViewDelegate {
         return news.count
     }
     
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableViewAutomaticDimension
+    }
+    
+    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 450
+    }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: Identifier.newsTableViewCell, for: indexPath) as! NYTNewsTableViewCell
         cell.setup(with: news[indexPath.row])
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        let url = URL(string: news[indexPath.row].url)!
+        let safariController = SFSafariViewController(url: url)
+        present(safariController, animated: true, completion: nil)
     }
 }

@@ -11,6 +11,7 @@
 		3238CE6F1FB8EE2B0011F832 /* NYTNewsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3238CE6E1FB8EE2B0011F832 /* NYTNewsTableViewCell.swift */; };
 		3238CE711FB8F1F50011F832 /* NYTNewsPhotoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3238CE701FB8F1F50011F832 /* NYTNewsPhotoView.swift */; };
 		3238CE731FB8F2040011F832 /* NYTNewsContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3238CE721FB8F2040011F832 /* NYTNewsContentView.swift */; };
+		3238CE781FB93CEB0011F832 /* String+Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3238CE771FB93CEB0011F832 /* String+Util.swift */; };
 		32C1883E1FB8D62D00827F48 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C1883D1FB8D62D00827F48 /* AppDelegate.swift */; };
 		32C188431FB8D62D00827F48 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 32C188411FB8D62D00827F48 /* Main.storyboard */; };
 		32C188451FB8D62D00827F48 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 32C188441FB8D62D00827F48 /* Assets.xcassets */; };
@@ -33,6 +34,7 @@
 		3238CE6E1FB8EE2B0011F832 /* NYTNewsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NYTNewsTableViewCell.swift; sourceTree = "<group>"; };
 		3238CE701FB8F1F50011F832 /* NYTNewsPhotoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NYTNewsPhotoView.swift; sourceTree = "<group>"; };
 		3238CE721FB8F2040011F832 /* NYTNewsContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NYTNewsContentView.swift; sourceTree = "<group>"; };
+		3238CE771FB93CEB0011F832 /* String+Util.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Util.swift"; sourceTree = "<group>"; };
 		32C1883A1FB8D62D00827F48 /* NYTReader.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NYTReader.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		32C1883D1FB8D62D00827F48 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		32C188421FB8D62D00827F48 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -73,6 +75,14 @@
 				F49EAB43D6C4BF590733888E /* Pods-NYTReader.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		3238CE741FB93BCB0011F832 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				3238CE771FB93CEB0011F832 /* String+Util.swift */,
+			);
+			path = Extension;
 			sourceTree = "<group>";
 		};
 		32C188311FB8D62D00827F48 = {
@@ -179,6 +189,7 @@
 			isa = PBXGroup;
 			children = (
 				32C1886C1FB8E31100827F48 /* APIManager */,
+				3238CE741FB93BCB0011F832 /* Extension */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -311,6 +322,7 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-NYTReader/Pods-NYTReader-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
 				"${BUILT_PRODUCTS_DIR}/PromiseKit/PromiseKit.framework",
 				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
@@ -318,6 +330,7 @@
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PromiseKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
@@ -346,6 +359,7 @@
 				32C1885E1FB8DC1E00827F48 /* Decoder.swift in Sources */,
 				3238CE731FB8F2040011F832 /* NYTNewsContentView.swift in Sources */,
 				32C188641FB8DF7200827F48 /* NYTNewswireRequest.swift in Sources */,
+				3238CE781FB93CEB0011F832 /* String+Util.swift in Sources */,
 				32C188601FB8DC2900827F48 /* Decodable.swift in Sources */,
 				3238CE6F1FB8EE2B0011F832 /* NYTNewsTableViewCell.swift in Sources */,
 				32C1883E1FB8D62D00827F48 /* AppDelegate.swift in Sources */,

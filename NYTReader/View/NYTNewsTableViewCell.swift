@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SnapKit
 
 class NYTNewsTableViewCell: UITableViewCell {
     
@@ -32,11 +33,22 @@ class NYTNewsTableViewCell: UITableViewCell {
     }
     
     func setup(with news: News) {
+        if let photo = news.photo {
+            photoView.setup(with: photo)
+        }
         
+        newsContentView.setup(with: news)
     }
     
     fileprivate func layoutInnerViews() {
+        photoView.snp.makeConstraints { make in
+            make.top.leading.trailing.equalTo(self.contentView)
+        }
         
+        newsContentView.snp.makeConstraints { make in
+            make.leading.trailing.bottom.equalTo(self.contentView)
+            make.top.equalTo(self.photoView.snp.bottom)
+        }
     }
 
 }

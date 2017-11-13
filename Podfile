@@ -11,4 +11,5 @@ target 'NYTReader' do
   pod 'SwiftyJSON'
   pod 'PromiseKit', '~> 4.4'
   pod 'SnapKit', '~> 4.0.0'
+  pod 'Kingfisher', '~> 4.0'
 end
