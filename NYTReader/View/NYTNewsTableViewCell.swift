@@ -33,10 +33,7 @@ class NYTNewsTableViewCell: UITableViewCell {
     }
     
     func setup(with news: News) {
-        if let photo = news.photo {
-            photoView.setup(with: photo)
-        }
-        
+        photoView.setup(with: news.photo)
         newsContentView.setup(with: news)
     }
     

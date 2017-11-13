@@ -32,8 +32,7 @@ class NYTNewsViewController: UIViewController {
     // MARK: -
     // MARK: Private properties
     
-    fileprivate var news = [News]()
-    fileprivate var offset = 0
+    fileprivate var newsViewModel = NewsViewModel(news: [])
     
     lazy fileprivate var refreshControl: UIRefreshControl = {
         let newRefreshControl = UIRefreshControl()
@@ -70,26 +69,20 @@ class NYTNewsViewController: UIViewController {
     // MARK: Private methods
     
     fileprivate func fetchNews(_ refresh: Bool) {
-        if refresh {
-            offset = 0
-            news = [News]()
-        }
-        
-        NYTNewsManager.shared.fetchAllNews(offset: offset) { (data, error) in
-            guard error == nil else { fatalError("Show Error Messages!!!") }
-            guard let newData = data, !newData.isEmpty else { return }
-            self.news.append(contentsOf: newData)
-            self.offset += 1
-            self.newsTableView.reloadData()
-            self.refreshControl.endRefreshing()
-            self.newsTableView.finishInfiniteScroll()
+        newsViewModel.fetchNews(refresh) { [weak self] (viewModel, error) in
+            guard error == nil else { fatalError() }
+            
+            guard let strongSelf = self else { return }
+            strongSelf.newsTableView.reloadData()
+            strongSelf.refreshControl.endRefreshing()
+            strongSelf.newsTableView.finishInfiniteScroll()
         }
     }
 }
 
 extension NYTNewsViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return news.count
+        return newsViewModel.news.count
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -97,18 +90,18 @@ extension NYTNewsViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 450
+        return 380
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: Identifier.newsTableViewCell, for: indexPath) as! NYTNewsTableViewCell
-        cell.setup(with: news[indexPath.row])
+        cell.setup(with: newsViewModel.news[indexPath.row])
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        let url = URL(string: news[indexPath.row].url)!
+        let url = URL(string: newsViewModel.news[indexPath.row].url)!
         let safariController = SFSafariViewController(url: url)
         present(safariController, animated: true, completion: nil)
     }
