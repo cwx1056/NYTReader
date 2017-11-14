@@ -10,9 +10,11 @@ import UIKit
 import SnapKit
 
 class NYTNewsTableViewCell: UITableViewCell {
-
+    
     lazy fileprivate var photoView: UIImageView = {
-        return UIImageView()
+        let newImageView = UIImageView()
+        newImageView.contentMode = .scaleAspectFill
+        return newImageView
     }()
     
     lazy fileprivate var authorLabel: UILabel = {
@@ -77,19 +79,19 @@ class NYTNewsTableViewCell: UITableViewCell {
     
     func setup(with news: News) {
         if let photo = news.photo {
-            authorLabel.text = photo.copyright
+            photoAuthorLabel.text = photo.copyright
             photoView.setImage(with: URL(string: photo.url)!)
+            updatePhotoView(CGFloat(photo.height / photo.width))
         } else {
-            authorLabel.text = nil
+            photoAuthorLabel.text = nil
             photoView.image = nil
+            updatePhotoView(0)
         }
         
         authorLabel.text = news.byline
         titleLabel.text = news.title
         contentLabel.text = news.abstract
         dateLabel.text = news.date.toNewsDateString()
-        
-        layoutIfNeeded()
     }
     
     fileprivate func layoutInnerViews() {
@@ -123,14 +125,14 @@ class NYTNewsTableViewCell: UITableViewCell {
         dateLabel.snp.makeConstraints { make in
             make.leading.equalTo(self.contentLabel)
             make.top.equalTo(self.contentLabel.snp.bottom).offset(10)
-            make.bottom.equalTo(self.contentView).offset(-32)
+            make.bottom.equalTo(self.contentView).offset(-20)
         }
     }
     
-    fileprivate func updatePhotoViewLayout(_ ratio: CGFloat) {
+    fileprivate func updatePhotoView(_ ratio: CGFloat) {
         photoView.snp.remakeConstraints { make in
             make.leading.trailing.top.equalTo(self.contentView)
-            make.height.equalTo(self.photoView.snp.width).multipliedBy(ratio)
+            make.height.equalTo(self.photoView.snp.width).multipliedBy(ratio).priority(999)
         }
     }
 

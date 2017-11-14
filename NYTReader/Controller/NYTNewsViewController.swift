@@ -70,13 +70,22 @@ class NYTNewsViewController: UIViewController {
     
     fileprivate func fetchNews(_ refresh: Bool) {
         newsViewModel.fetchNews(refresh) { [weak self] (viewModel, error) in
-            guard error == nil else { fatalError() }
-            
             guard let strongSelf = self else { return }
+            guard error == nil else {
+                strongSelf.showAlert("Failed to load news, please try again later!")
+                return
+            }
+            
             strongSelf.newsTableView.reloadData()
             strongSelf.refreshControl.endRefreshing()
             strongSelf.newsTableView.finishInfiniteScroll()
         }
+    }
+    
+    fileprivate func showAlert(_ message: String) {
+        let alertController = UIAlertController(title: nil, message: message, preferredStyle: .alert)
+        alertController.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+        present(alertController, animated: true, completion: nil)
     }
 }
 
