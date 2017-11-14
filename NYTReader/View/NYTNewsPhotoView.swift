@@ -60,9 +60,9 @@ class NYTNewsPhotoView: UIView {
             
             if let photo = newsPhoto {
                 let ratio = CGFloat(photo.height / photo.width)
-                make.height.equalTo(self.photoView.snp.width).multipliedBy(ratio)
+                make.height.equalTo(self.photoView.snp.width).multipliedBy(ratio).priority(999)
             } else {
-                make.height.equalTo(0)
+                make.height.equalTo(0).priority(999)
             }
         }
         
