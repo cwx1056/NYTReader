@@ -7,3 +7,8 @@
 //
 
 import Foundation
+import SwiftyJSON
+
+public protocol Decoder {
+    func decode(_ json: JSON) -> Any?
+}
