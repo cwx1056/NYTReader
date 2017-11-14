@@ -29,6 +29,7 @@
 		32C1886E1FB8E31F00827F48 /* NYTNewsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C1886D1FB8E31F00827F48 /* NYTNewsManager.swift */; };
 		32C188701FB8E7B600827F48 /* NewsCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C1886F1FB8E7B600827F48 /* NewsCollection.swift */; };
 		32C32D871FBA307D00461707 /* NewsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C32D861FBA307D00461707 /* NewsViewModel.swift */; };
+		32C32D891FBA45ED00461707 /* UIImageView+Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C32D881FBA45ED00461707 /* UIImageView+Util.swift */; };
 		7AC8AB5C4FA61DE41CD1A649 /* Pods_NYTReader.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6B5C6F2DF6300E8AA099A9E2 /* Pods_NYTReader.framework */; };
 /* End PBXBuildFile section */
 
@@ -57,6 +58,7 @@
 		32C1886D1FB8E31F00827F48 /* NYTNewsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NYTNewsManager.swift; sourceTree = "<group>"; };
 		32C1886F1FB8E7B600827F48 /* NewsCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsCollection.swift; sourceTree = "<group>"; };
 		32C32D861FBA307D00461707 /* NewsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsViewModel.swift; sourceTree = "<group>"; };
+		32C32D881FBA45ED00461707 /* UIImageView+Util.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Util.swift"; sourceTree = "<group>"; };
 		6B5C6F2DF6300E8AA099A9E2 /* Pods_NYTReader.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NYTReader.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D4E3396BDB123314C1893ED4 /* Pods-NYTReader.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NYTReader.debug.xcconfig"; path = "Pods/Target Support Files/Pods-NYTReader/Pods-NYTReader.debug.xcconfig"; sourceTree = "<group>"; };
 		F49EAB43D6C4BF590733888E /* Pods-NYTReader.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NYTReader.release.xcconfig"; path = "Pods/Target Support Files/Pods-NYTReader/Pods-NYTReader.release.xcconfig"; sourceTree = "<group>"; };
@@ -88,6 +90,7 @@
 			children = (
 				3238CE771FB93CEB0011F832 /* String+Util.swift */,
 				3238CE7C1FB957850011F832 /* Date+Util.swift */,
+				32C32D881FBA45ED00461707 /* UIImageView+Util.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -348,7 +351,7 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-NYTReader/Pods-NYTReader-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
-				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
+				"${BUILT_PRODUCTS_DIR}/AlamofireImage/AlamofireImage.framework",
 				"${BUILT_PRODUCTS_DIR}/PromiseKit/PromiseKit.framework",
 				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
@@ -357,7 +360,7 @@
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlamofireImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PromiseKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
@@ -390,6 +393,7 @@
 				3238CE731FB8F2040011F832 /* NYTNewsContentView.swift in Sources */,
 				32C188641FB8DF7200827F48 /* NYTNewswireRequest.swift in Sources */,
 				3238CE781FB93CEB0011F832 /* String+Util.swift in Sources */,
+				32C32D891FBA45ED00461707 /* UIImageView+Util.swift in Sources */,
 				32C188601FB8DC2900827F48 /* Decodable.swift in Sources */,
 				3238CE6F1FB8EE2B0011F832 /* NYTNewsTableViewCell.swift in Sources */,
 				32C1883E1FB8D62D00827F48 /* AppDelegate.swift in Sources */,

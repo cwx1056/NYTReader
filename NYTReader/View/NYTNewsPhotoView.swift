@@ -8,7 +8,6 @@
 
 import UIKit
 import SnapKit
-import Kingfisher
 
 class NYTNewsPhotoView: UIView {
 
@@ -43,7 +42,7 @@ class NYTNewsPhotoView: UIView {
     func setup(with newsPhoto: NewsPhoto?) {
         if let photo = newsPhoto {
             authorLabel.text = photo.copyright
-            photoView.kf.setImage(with: URL(string: photo.url))
+            photoView.setImage(with: URL(string: photo.url))
         } else {
             authorLabel.text = nil
             photoView.image = nil

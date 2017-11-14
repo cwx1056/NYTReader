@@ -11,6 +11,6 @@ target 'NYTReader' do
   pod 'SwiftyJSON'
   pod 'PromiseKit', '~> 4.4'
   pod 'SnapKit', '~> 4.0.0'
-  pod 'Kingfisher', '~> 4.0'
+  pod 'AlamofireImage', '~> 3.3'
   pod 'UIScrollView-InfiniteScroll', '~> 1.0.0'
 end

@@ -15,7 +15,7 @@ class NYTNewsTableViewCell: UITableViewCell {
         return UIImageView()
     }()
     
-    lazy fileprivate var photoAuthorLabel: UILabel = {
+    lazy fileprivate var authorLabel: UILabel = {
         let newLabel = UILabel()
         newLabel.numberOfLines = 0
         newLabel.lineBreakMode = .byWordWrapping
@@ -48,7 +48,7 @@ class NYTNewsTableViewCell: UITableViewCell {
         return newLabel
     }()
     
-    lazy fileprivate var authorLabel: UILabel = {
+    lazy fileprivate var photoAuthorLabel: UILabel = {
         let newLabel = UILabel()
         newLabel.numberOfLines = 0
         newLabel.lineBreakMode = .byWordWrapping
@@ -78,18 +78,18 @@ class NYTNewsTableViewCell: UITableViewCell {
     func setup(with news: News) {
         if let photo = news.photo {
             authorLabel.text = photo.copyright
-            photoView.kf.setImage(with: URL(string: photo.url))
-            updatePhotoViewLayout(CGFloat(photo.height / photo.width))
+            photoView.setImage(with: URL(string: photo.url)!)
         } else {
             authorLabel.text = nil
             photoView.image = nil
-            updatePhotoViewLayout(0)
         }
         
         authorLabel.text = news.byline
         titleLabel.text = news.title
         contentLabel.text = news.abstract
         dateLabel.text = news.date.toNewsDateString()
+        
+        layoutIfNeeded()
     }
     
     fileprivate func layoutInnerViews() {
@@ -123,7 +123,7 @@ class NYTNewsTableViewCell: UITableViewCell {
         dateLabel.snp.makeConstraints { make in
             make.leading.equalTo(self.contentLabel)
             make.top.equalTo(self.contentLabel.snp.bottom).offset(10)
-            make.bottom.equalTo(self.contentView).offset(-15)
+            make.bottom.equalTo(self.contentView).offset(-32)
         }
     }
     
