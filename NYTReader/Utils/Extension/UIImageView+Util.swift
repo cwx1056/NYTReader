@@ -13,9 +13,14 @@ import AlamofireImage
 extension UIImageView {
     func setImage(with url: URL?) {
         guard let urlStr = url?.absoluteString else { return }
-        Alamofire.request(urlStr).responseImage { response in
-            if let image = response.result.value {
-                self.image = image
+        
+        if let image = ImageCacher.shared.getImage(urlStr) {
+            self.image = image
+        } else {
+            Alamofire.request(urlStr).responseImage { response in
+                if let image = response.result.value {
+                    self.image = image
+                }
             }
         }
     }
